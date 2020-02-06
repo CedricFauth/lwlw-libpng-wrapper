@@ -1,0 +1,6 @@
+./configure --prefix=/Users/cedricfauth/drive/C/lwlw-libpng-wrapper/tests/lib_mac/thirdparties CFLAGS="-DPNG_NO_SETJMP" --disable-shared --enable-static
+
+make check
+
+make install
+

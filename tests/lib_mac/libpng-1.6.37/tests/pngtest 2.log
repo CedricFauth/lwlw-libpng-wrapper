@@ -1,0 +1,33 @@
+
+ Testing libpng version 1.6.37
+   with zlib   version 1.2.11
+
+libpng version 1.6.37
+Copyright (c) 2018-2019 Cosmin Truta
+Copyright (c) 1998-2002,2004,2006-2018 Glenn Randers-Pehrson
+Copyright (c) 1996-1997 Andreas Dilger
+Copyright (c) 1995-1996 Guy Eric Schalnat, Group 42, Inc.
+ library (10637): libpng version 1.6.37 - April 14, 2019
+
+ pngtest (10637): libpng version 1.6.37 - April 14, 2019
+
+ Testing ./pngtest.png:
+   Text compression[0]=-1
+
+ stereo mode = 1
+ vpAg = 100 x 100, units = 0
+
+   Text compression[0]=0
+ eXIf type MM, 52 bytes
+
+ Image width = 91, height = 69
+
+ PASS (9782 zero samples)
+ tIME = 7 Jun 1996 17:58:08 +0000
+ libpng passes test
+ Default limits:
+  width_max  = 1000000
+  height_max = 1000000
+  cache_max  = 1000
+  malloc_max = 8000000
+PASS tests/pngtest (exit status: 0)
