@@ -8,7 +8,7 @@ CFLAGS=-std=c99 -Wall
 
 linux: clean1 comp_linux clean2
 
-mac: clean1 comp_mac clean clean2
+mac: clean1 comp_mac clean2
 
 comp_mac: test.o lwlw.o src/lwlw.h
 	$(CC) $(CFLAGS) -o test test.o lwlw.o ext/mac/libpng/lib/libpng.a ext/mac/zlib/lib/libz.a -lm
