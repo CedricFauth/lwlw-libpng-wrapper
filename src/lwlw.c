@@ -109,8 +109,8 @@ void lwlw_close_image(lwlw_image image){
         free(image->row_pointers[i]);
     }
     
-    free(image->row_pointers);
-    //free(image);
+  free(image->row_pointers);
+    free(image);
 
 }
 
@@ -124,7 +124,7 @@ void lwlw_read_image(lwlw_image image,
         }
     }*/
 
-    uint8_t pixel_size = image->row_length / image->width;
+    u_int8_t pixel_size = image->row_length / image->width;
     for (int i = 0; i < image->height; i++){
         for(int j = 0; j < image->width; j++){
             pixel_op(&(image->row_pointers[i][j*pixel_size]), i, j, pixel_size);
