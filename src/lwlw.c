@@ -109,7 +109,7 @@ void lwlw_close_image(lwlw_image image){
         free(image->row_pointers[i]);
     }
     
-  free(image->row_pointers);
+    free(image->row_pointers);
     free(image);
 
 }
