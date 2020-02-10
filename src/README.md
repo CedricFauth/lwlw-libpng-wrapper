@@ -1,20 +1,29 @@
 # Documentation
 
-## Functions
-
+## OPEN
 |return type | function    |
 |------------|-------------|
-| lwlw_image | lwlw_read_image( char *filename )|
-| uint_32_t  | lwlw_get_width( lwlw_image img )|
-| uint_32_t  | lwlw_get_height( lwlw_image img )|
-| void       | lwlw_pixel_operation( lwlw_image img, uint_8_t (*pixel_op)(uint_8_t value, int pos_x, int pos_y) ) |
-| int  | lwlw_write_image( lwlw_image img, char *filename )|
+| lwlw_image | lwlw_open_image(const char* filename, int mode)|
+&nbsp;
 
-## Structures
+## READ / MODIFY
+|return type | function    |
+|------------|-------------|
+| void       | lwlw_read_image( lwlw_image img, void (*pixel_op)(png_bytep rgb_pixel, int row, int col, int length) )|
+| u_int_32_t  | lwlw_get_width( lwlw_image img ) |
+| u_int_32_t  | lwlw_get_height( lwlw_image img )|
+| void       | lwlw_override_image( lwlw_image img, lwlw_pixel (*pixel_op)(lwlw_pixel rgb_pixel, int row, int col, int length) )|
+| lwlw_pixel | lwlw_get_pixel( lwlw_image, u_int32_t row, u_int32_t col )|
+&nbsp;
 
-### lwlw_image attributes:
+## WRITE BACK / SAVE
+|return type | function    |
+|------------|-------------|
+| int        | lwlw_write_image( lwlw_image img, char *filename )|
+&nbsp;
 
-| type        | attribute name  | description  |
-|-------------|-----------------|-------------|
-| png_structp | png_struct      | only internal use |
-| png_infop   | png_info        | only internal use |
+## CLOSE
+|return type | function    |
+|------------|-------------|
+| void       | lwlw_close_image( lwlw_image image )|
+&nbsp;

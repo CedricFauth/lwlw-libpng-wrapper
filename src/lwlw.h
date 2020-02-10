@@ -12,6 +12,7 @@
 #define LWLW_RGBA 0x04
 #define LWLW_GRAYA 0x08
 
+typedef unsigned char* lwlw_pixel;
 
 /*
     lwlw_image_t represents your image.
@@ -23,8 +24,6 @@
 
     !do not access these attributes directly!
 */
-
-typedef unsigned char* lwlw_pixel;
 
 struct lwlw_image_t {
 

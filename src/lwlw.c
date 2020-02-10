@@ -16,7 +16,7 @@ lwlw_image lwlw_open_image(const char* filename, int mode) {
     FILE *fp = fopen(filename, "rb");
 
     if(!fp) {
-        error("read_image", "could not open file");
+        error("lwlw_open_image", "could not open file");
         return NULL;
     }
 
@@ -27,7 +27,7 @@ lwlw_image lwlw_open_image(const char* filename, int mode) {
     u_int8_t header[8] = {0};
     fread(header, 1, 8, fp);
     if(png_sig_cmp(header, 0, 8)) {
-        error("read_image", "file is no png image");
+        error("lwlw_open_image", "file is no png image");
         fclose(fp);
         return NULL;
     }
@@ -35,7 +35,7 @@ lwlw_image lwlw_open_image(const char* filename, int mode) {
     // allocate space for image structure
     lwlw_image image = calloc(1, sizeof(struct lwlw_image_t));
     if(!image) {
-        error("read_image", "could not create image structure");
+        error("lwlw_open_image", "could not create image structure");
         fclose(fp);
         return NULL;
     }
@@ -45,7 +45,7 @@ lwlw_image lwlw_open_image(const char* filename, int mode) {
     if(!image->png_struct_p) {
         free(image);
         fclose(fp);
-        error("read_image", "could not create png structure");
+        error("lwlw_open_image", "could not create png structure");
         return NULL;
     }
 
@@ -55,7 +55,7 @@ lwlw_image lwlw_open_image(const char* filename, int mode) {
         png_destroy_read_struct(&(image->png_struct_p), NULL, NULL);
         free(image);
         fclose(fp);
-        error("read_image", "could not create info structure");
+        error("lwlw_open_image", "could not create info structure");
         return NULL;
     }
 
@@ -104,7 +104,6 @@ lwlw_image lwlw_open_image(const char* filename, int mode) {
 
     if(mode == LWLW_GRAY || mode == LWLW_GRAYA) {
         png_set_rgb_to_gray(image->png_struct_p, PNG_ERROR_ACTION_NONE, 0.21, 0.72);
-        printf("GRAYYY \n\n\n");
     }
 
     if(mode != LWLW_GRAY && mode != LWLW_GRAYA && (color == PNG_COLOR_TYPE_GRAY ||
@@ -147,6 +146,11 @@ lwlw_image lwlw_open_image(const char* filename, int mode) {
 
 void lwlw_close_image(lwlw_image image) {
 
+    if(!image){
+        error("lwlw_close_image", "image is NULL");
+        return;
+    }
+
     // free all pixels in rows
     for (int i = 0; i < image->height; i++) {
         free(image->row_pointers[i]);
@@ -162,6 +166,11 @@ void lwlw_close_image(lwlw_image image) {
 void lwlw_override_image(lwlw_image image,
                          png_bytep (*pixel_op)(png_bytep rgb_pixel, int row, int col, int length)) {
 
+    if(!image){
+        error("lwlw_override_image", "image is NULL");
+        return;
+    }
+
     // determine how many channels a pixel contains
     u_int8_t pixel_size = image->row_length / image->width;
     // loop over each pixel
@@ -170,7 +179,7 @@ void lwlw_override_image(lwlw_image image,
             // call modify/callback function with current pixel
             lwlw_pixel pix_ptr = pixel_op(&(image->row_pointers[i][j*pixel_size]), i, j, pixel_size);
             if(!pix_ptr) {
-                error("lwlw_override_image", "Error return of pixel_op is NULL");
+                error("lwlw_override_image", "Error user function returned NULL");
                 return;
             }
             // write new pixeldata from callback function back
