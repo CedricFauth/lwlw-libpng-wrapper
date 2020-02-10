@@ -4,10 +4,13 @@
 #include <sys/types.h>
 #include "png.h"
 
-
+/*
+    predefined values for image opening 'mode'
+*/
 #define LWLW_GRAY 0x01
 #define LWLW_RGB 0x02
-#define LWLW_SRGB 0x04
+#define LWLW_RGBA 0x04
+#define LWLW_GRAYA 0x08
 
 
 /*
@@ -30,7 +33,7 @@ struct lwlw_image_t {
     u_int32_t width;
     png_structp png_struct_p;
     png_infop png_info_p;
-    png_bytepp row_pointers;
+    u_int8_t **row_pointers;
     size_t row_length;
 
 };
