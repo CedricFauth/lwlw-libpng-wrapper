@@ -15,7 +15,7 @@ lwlw_pixel write_callback(lwlw_pixel pixel,  int row, int col, int length) {
 
 int main(int argc, char* argv[]) {
 
-    lwlw_image image = lwlw_open_image(argv[1], LWLW_RGB);
+    lwlw_image image = lwlw_open_image(argv[1], LWLW_RGBA);
 
     lwlw_override_image(image, write_callback);
     //lwlw_override_image(image, write_callback);
