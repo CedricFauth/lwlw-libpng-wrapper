@@ -58,12 +58,6 @@ lwlw_image lwlw_open_image(const char* filename, int mode);
 void lwlw_close_image(lwlw_image image);
 
 /*
-    lwlw_read_image lets you read the whole image pixel by pixel
-*/
-void lwlw_read_image(lwlw_image img,
-                     void (*pixel_op)(png_bytep rgb_pixel, int row, int col, int length));
-
-/*
     lwlw_override_image lets you modify every pixel of the image
     you can define a callback function that returns the new pixel value
 */
