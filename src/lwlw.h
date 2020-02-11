@@ -62,7 +62,7 @@ void lwlw_close_image(lwlw_image image);
     you can define a callback function that returns the new pixel value
 */
 void lwlw_override_image(lwlw_image img,
-                         lwlw_pixel (*pixel_op)(lwlw_pixel rgb_pixel, int row, int col, int length));
+        void (*pixel_op)(lwlw_pixel rgb_pixel, int row, int col, int length));
 
 
 #endif

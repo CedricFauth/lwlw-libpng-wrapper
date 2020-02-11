@@ -37,7 +37,7 @@ Close:
 |------------|-------------|
 | u_int_32_t | lwlw_get_width( lwlw_image img ) |
 | u_int_32_t | lwlw_get_height( lwlw_image img )|
-| void       | lwlw_override_image( lwlw_image img, lwlw_pixel (*pixel_op)(lwlw_pixel rgb_pixel, int row, int col, int length) )|
+| void       | lwlw_override_image( lwlw_image img, void (*pixel_op)(lwlw_pixel rgb_pixel, int row, int col, int length) )|
 | lwlw_pixel | lwlw_get_pixel( lwlw_image, u_int32_t row, u_int32_t col )|
 
 &nbsp;

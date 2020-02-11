@@ -164,7 +164,7 @@ void lwlw_close_image(lwlw_image image) {
 }
 
 void lwlw_override_image(lwlw_image image,
-                         png_bytep (*pixel_op)(png_bytep rgb_pixel, int row, int col, int length)) {
+                         void (*pixel_op)(png_bytep rgb_pixel, int row, int col, int length)) {
 
     if(!image){
         error("lwlw_override_image", "image is NULL");
@@ -177,15 +177,8 @@ void lwlw_override_image(lwlw_image image,
     for (int i = 0; i < image->height; i++) {
         for(int j = 0; j < image->width; j++) {
             // call modify/callback function with current pixel
-            lwlw_pixel pix_ptr = pixel_op(&(image->row_pointers[i][j*pixel_size]), i, j, pixel_size);
-            if(!pix_ptr) {
-                error("lwlw_override_image", "Error user function returned NULL");
-                return;
-            }
-            // write new pixeldata from callback function back
-            for(int e = 0; e < pixel_size; e++) {
-                image->row_pointers[i][j*pixel_size+e] = pix_ptr[e];
-            }
+            pixel_op(&(image->row_pointers[i][j*pixel_size]), i, j, pixel_size);
+            
         }
     }
 
