@@ -7,7 +7,7 @@ void write_callback(lwlw_pixel pixel,  int row, int col, int length) {
         printf("%03d ", pixel[i]);
 
         //changing pixel values
-        pixel[i] = i;
+        //pixel[i] = i;
     }
     printf("\n");
 }
@@ -17,7 +17,13 @@ int main(int argc, char* argv[]) {
     lwlw_image image = lwlw_open_image(argv[1], LWLW_RGBA);
 
     lwlw_override_image(image, write_callback);
-    lwlw_override_image(image, write_callback);
+    //lwlw_override_image(image, write_callback);
+
+    lwlw_pixel pixel = lwlw_get_pixel(image, 2, 0);
+    for(int i = 0; i < 4; i++){
+        printf("%03d ", pixel[i]);
+    }
+    printf("\n");
 
     lwlw_close_image(image);
 

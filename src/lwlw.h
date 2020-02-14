@@ -12,7 +12,7 @@
 #define LWLW_RGBA 0x04
 #define LWLW_GRAYA 0x08
 
-typedef unsigned char* lwlw_pixel;
+typedef u_int8_t* lwlw_pixel;
 
 /*
     lwlw_image_t represents your image.
@@ -64,5 +64,7 @@ void lwlw_close_image(lwlw_image image);
 void lwlw_override_image(lwlw_image img,
         void (*pixel_op)(lwlw_pixel rgb_pixel, int row, int col, int length));
 
+
+lwlw_pixel lwlw_get_pixel( lwlw_image, u_int32_t row, u_int32_t col );
 
 #endif

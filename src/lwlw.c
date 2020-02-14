@@ -183,3 +183,15 @@ void lwlw_override_image(lwlw_image image,
     }
 
 }
+
+
+lwlw_pixel lwlw_get_pixel(lwlw_image image, u_int32_t row, u_int32_t col ){
+
+    if(!image){
+        error("lwlw_get_pixel", "image is NULL");
+        return NULL;
+    }
+    int size = image->row_length / image->width;
+    return (lwlw_pixel)&image->row_pointers[row][col*size];
+
+}
