@@ -1,4 +1,7 @@
 # lwlw-libpng-wrapper
+
+See the [Documentation](https://github.com/CedricFauth/lwlw-libpng-wrapper/blob/master/src/README.md).
+
 ### What is lwlw? 
 lwlw is a LightWeight Libpng Wrapper library.
 
